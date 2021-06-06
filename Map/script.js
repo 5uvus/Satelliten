@@ -4,7 +4,9 @@ require([
   "esri/Map",
   "esri/views/MapView",
   "esri/widgets/Search",
-  "esri/layers/FeatureLayer"
+  "esri/layers/FeatureLayer",
+  "esri/tasks/locator"
+
 
 ], function(esriConfig,Map, MapView, Search, FeatureLayer) {
 
@@ -20,28 +22,23 @@ const view = new MapView({
   center: [-118.80543,34.02700],
   zoom: 5
 });
-var searchWidget = new Search({
+
+const searchWidget = new Search({
   view: view,
-  sources: [{
-    featureLayer: {
-      url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CongressionalDistricts/FeatureServer/0",
-    },
-    searchFields: ["DISTRICTID"],
-    displayField: "DISTRICTID",
-    exactMatch: false,
-    outFields: ["DISTRICTID", "NAME", "PARTY"],
-    name: "Congressional Districts",
-    placeholder: "example: 3708",
-  }, {
-   featureLayer: {
-      url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0",
-  },
-    searchFields: ["Name", "Party"],
-    suggestionTemplate: "{Name}, Party: {Party}",
-    exactMatch: false,
-    outFields: ["*"],
-    name: "Senators",
-  }]
+  allPlaceholder: "District or Senator",
+  includeDefaultSources: false,
+  sources: [
+  
+    {
+      name: "ArcGIS World Geocoding Service",
+      placeholder: "example: Nuuk, GRL",
+      apiKey: "AAPKd6517aa887304b5891f6b959ea426015CLWBA2qIMPI4-vgwnS0B8RGRBVMArpJu0IN2BUL-G6GZ_aa8NF-r_JvSnsWp_A2M",
+      singleLineFieldName: "SingleLine",
+      locator: new Locator({
+        url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+      })
+    }
+  ]
 });
 view.ui.add(searchWidget, {
   position: "top-right",
