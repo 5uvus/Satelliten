@@ -1,4 +1,5 @@
 
+console.log("lol");
 const satellite_id = 1;
 const url = `https://api.spectator.earth/satellite/${satellite_id}`;
 fetch(url)
