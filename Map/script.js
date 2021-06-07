@@ -17,21 +17,20 @@ const map = new Map({
 });
 
 const view = new SceneView({
-  container: "viewDiv",
-  map: map,
-  camera: {
-    position: {
-      x: -118.808, //Longitude
-      y: 33.961, //Latitude
-      z: 600000 // Meters
-    },
-    tilt: 45
-  }
-});
+ container: "viewDiv",
+    map: map,
+    camera: {
+      position: {
+        x: -118.808, //Longitude
+        y: 33.961, //Latitude
+        z: 600000 // Meters
+      },
+      tilt: 45
+    }
+  });
 
 const searchWidget = new Search({
   view: view,
-  allPlaceholder: "District or Senator",
   includeDefaultSources: false,
   sources: [
   
