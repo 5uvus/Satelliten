@@ -1,27 +1,21 @@
-require([
-    "esri/config",
-    "esri/Map", 
-    "esri/views/SceneView"
-], function(esriConfig,Map, SceneView) {
-  
-  esriConfig.apiKey = "AAPK8f51c7ada42f45f3a312772b619297a0GX-8LymtaW78Crkz_fE6f5Pst5hdHATvlIGf86z0flzOmxp_QAobGzacz_CMP0HT";
-  
+require(["esri/Map", "esri/views/SceneView", "esri/widgets/Search"], function(Map, SceneView, Search) {
   var map = new Map({
-    basemap: "arcgis-imagery", //Basemap layer service
-    ground: "world-elevation" //Elevation service
+    basemap: "satellite",
+    ground: "world-elevation"
   });
 
   var view = new SceneView({
+    scale: 123456789,
     container: "viewDiv",
-    map: map,
-    camera: {
-      position: {
-        x: -118.808, //Longitude
-        y: 33.961, //Latitude
-        z: 600000,
-      },
-      tilt: 45
-    }
+    map: map
   });
-  
+
+  var searchWidget = new Search({
+    view: view
+  });
+
+  // Add the search widget to the top right corner of the view
+  view.ui.add(searchWidget, {
+    position: "top-right"
+  });
 });
