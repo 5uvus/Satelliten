@@ -11,6 +11,7 @@ body,
   height: 100%;
   width: 70%;
   float: left;
+  margin: 5px;
 
 }
 #first{
@@ -18,4 +19,15 @@ body,
   height: 100%;
   border: 1px solid black;
   margin: 5px;
+}
+
+#searchResult{
+  position: relative;
+  display: inline-block;
+ text-align: center;
+  margin: 0 auto;
+  
+  width: 50%;
+  height: 12%;
+  border: 1px solid red;
 }

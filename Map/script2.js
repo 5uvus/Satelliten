@@ -1,3 +1,4 @@
+
 require([
     "esri/Map",
     "esri/views/SceneView",
@@ -20,13 +21,22 @@ require([
 
   var searchWidget = new Search({
     view: view
-  });
 
+    
+  });
+  
+  searchWidget.on('search-complete', function(result)
+  {
+     var searchResult = searchWidget.searchWidget;
+      console.log(searchResult+"=search Result");
+      document.getElementById("searchResult").innerHTML = "lol";
+  });
+  
   // Add the search widget to the top right corner of the view
   view.ui.add(searchWidget, {
     position: "top-right"
   });
-  map.on("load", function() {
+/*   map.on("load", function() {
     //after map loads, connect to listen to mouse move & drag events
     map.on("mouse-move", showCoordinates);
     map.on("mouse-drag", showCoordinates);
@@ -86,5 +96,5 @@ require([
   });
   button.addEventListener("click", function (event) {
     sketchVM.create("polygon");
-  });
+  }); */
 });
