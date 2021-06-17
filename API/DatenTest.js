@@ -8,11 +8,23 @@ const url = `https://api.spectator.earth/overpass/?api_key=${api_key}&bbox=${bbo
 //Gibt die Sachen in der CMD Aus
 
 
+const port = 8080;
+const hostname = "127.0.0.1";
+const server = http.createServer(function (req, res) {
+  res.statusCode = 200;
+ 
+})
 
-http.createServer(function (req, res) {
-  fetch(url).then(function(response) {
-    return response.json();
-  }).then(function(data) {
-    console.log(data);
-  });
-}).listen(8080);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+
+var jsonOutput;
+fetch(url).then(function(response) {
+  return response.json();
+}).then(function(data) {
+  //console.log(JSON.stringify(data));
+  console.log(data.coordinates);
+  //Da Julian isch der beste
+});
