@@ -8,13 +8,11 @@ const url = `https://api.spectator.earth/overpass/?api_key=${api_key}&bbox=${bbo
 //Gibt die Sachen in der CMD Aus
 
 
+
 http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-fetch(url).then(function(response) {
-  return response.json();
-}).then(function(data) {
-  document.getElementById("demo").innerHTML = data;
-  console.log(data);
-});
-  res.end();
+  fetch(url).then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    console.log(data);
+  });
 }).listen(8080);
