@@ -3,11 +3,8 @@ require([
     "esri/Map",
     "esri/views/SceneView",
     "esri/widgets/Search",
-    "dojo/dom", 
-    "dojo/on",
-    "dojo/domReady!",
-    "esri/tasks/Locator",
-    "esri/Graphic"   ], function(Map, SceneView, Search) {
+    "esri/layers/GraphicsLayer",
+    "esri/Graphic"   ], function(Map, SceneView, Search, GraphicsLayer, Graphic) {
   var map = new Map({
     basemap: "satellite",
     ground: "world-elevation"
@@ -36,6 +33,30 @@ require([
   view.ui.add(searchWidget, {
     position: "top-right"
   });
+
+  //Layer für Punkte
+  const graphicsLayer = new GraphicsLayer();
+  map.add(graphicsLayer);
+
+  const point = { //Create a point
+    type: "point",
+    longitude: -101.68668162817289,
+    latitude: -81.0738034930512
+ };
+ 
+ const simpleMarkerSymbol = {
+  type: "simple-marker",
+  color: [226, 119, 40],  // Orange
+  outline: {
+      color: [255, 255, 255], // White
+      width: 1000
+  }
+};
+ const pointGraphic = new Graphic({
+  geometry: point,
+  symbol: simpleMarkerSymbol
+});
+graphicsLayer.add(pointGraphic);
 /*   map.on("load", function() {
     //after map loads, connect to listen to mouse move & drag events
     map.on("mouse-move", showCoordinates);
