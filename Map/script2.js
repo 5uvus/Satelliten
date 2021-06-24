@@ -1,22 +1,23 @@
 
 
-
 //WORLD-MAP------------------------------------------------------------------------------------
 require([
     "esri/Map",
-    "esri/views/SceneView",
+    "esri/views/MapView",
     "esri/widgets/Search",
     "esri/layers/GraphicsLayer",
-    "esri/Graphic"   ], function(Map, SceneView, Search, GraphicsLayer, Graphic) {
+    "esri/Graphic"   ], function(Map, MapView, Search, GraphicsLayer, Graphic) {
   var map = new Map({
-    basemap: "satellite",
-    ground: "world-elevation"
+    basemap: "dark-gray",
+
   });
 
- var view = new SceneView({
-    scale: 123456789,
-    container: "viewDiv",
-    map: map
+ var view = new MapView({
+  map: map,
+  autoResize: true,
+  center: [	16.363449, 	48.210033], // Longitude, latitude
+  zoom: 13, // Zoom level
+  container: "viewDiv" // Div element
   });
 
   var searchWidget = new Search({
@@ -38,13 +39,12 @@ require([
   });
 
   //Layer für Punkte
-  const graphicsLayer = new GraphicsLayer();
-  map.add(graphicsLayer);
+const graphicsLayer = new GraphicsLayer();
 
   const point = { //Create a point
     type: "point",
     longitude: 0,
-    latitude: -0
+    latitude: 0,
  };
  
  const simpleMarkerSymbol = {
@@ -52,14 +52,71 @@ require([
   color: [226, 119, 40],  // Orange
   outline: {
       color: [255, 255, 255], // White
-      width: 1000
+      width: 1
   }
 };
  const pointGraphic = new Graphic({
   geometry: point,
   symbol: simpleMarkerSymbol
 });
+//console.log(pointGraphic);
+
+const polyline = {
+  type: "polyline",
+  paths: [
+      [-118.821527826096, 34.0139576938577], //Longitude, latitude
+      [-118.814893761649, 34.0080602407843], //Longitude, latitude
+      [-118.808878330345, 34.0016642996246]  //Longitude, latitude
+  ]
+};
+const simpleLineSymbol = {
+  type: "simple-line",
+  color: [226, 119, 40], // Orange
+  width: 2
+};
+
+const polylineGraphic = new Graphic({
+  geometry: polyline,
+  symbol: simpleLineSymbol
+});
+graphicsLayer.add(polylineGraphic);
+/*     DRAW ORBIT ROUTE FOR 3D-Map 
+let point1;
+let pointGraphic1;
+let simpleMarkerSymbol1;
 graphicsLayer.add(pointGraphic);
+
+var orbit = [162.1127914218251,-81.2728580660886,200,300];
+for(var i = 0; i<orbit.length; i+=2){
+  var lat = orbit[i];
+  var long = orbit[i+1];
+  console.log("Lat: " + lat + "    Long:" + long);
+  simpleMarkerSymbol1 = {
+    type: "simple-marker",
+    color: [226, 119, 40],  // Orange
+    outline: {
+        color: [255, 255, 255], // White
+        width: 1000
+    }
+  };
+  point1 = { //Create a point
+    type: "point",
+    longitude: long,
+    latitude: lat
+ };
+ console.log(point1);
+
+  pointGraphic1 = new Graphic({
+  geometry: point,
+  symbol: simpleMarkerSymbol
+});
+console.log(pointGraphic1);
+
+graphicsLayer.add(pointGraphic1);  
+}
+
+map.add(graphicsLayer);
+*/
 /*   map.on("load", function() {
     //after map loads, connect to listen to mouse move & drag events
     map.on("mouse-move", showCoordinates);
