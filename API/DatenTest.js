@@ -4,7 +4,8 @@ const api_key = '7dc22efcaa6595c58a6b1e6e60bc347c0faeae0fa49992e20a9d20340fce1bb
 const bbox = '19.59,49.90,20.33,50.21';
 const satellites = 'Sentinel-2A,Sentinel-2B';
 const satellite_id = 1;
-const url = `https://api.spectator.earth/satellite/${satellite_id}`;
+const url_current_pos = `https://api.spectator.earth/satellite/${satellite_id}`;
+const url_tracking = `https://api.spectator.earth/satellite/${satellite_id}/trajectory`;
 
 //Gibt die Sachen in der CMD Aus
 
@@ -22,10 +23,22 @@ server.listen(port, hostname, () => {
 
 
 var jsonOutput;
-fetch(url).then(function(response) {
+fetch(url_current_pos).then(function(response) {
   return response.json();
 }).then(function(data) {
   //console.log(JSON.stringify(data));
-  console.log(data.geometry);
-  //Da Julian isch der beste
+  console.log("----Current Saatelite Position----")
+  console.log(data.geometry.coordinates);
+  console.log(data.geometry.coordinates[0]);
+  console.log(data.geometry.coordinates[1]);
+  console.log("------------------------");
+});
+
+fetch(url_tracking).then(function(response) {
+  return response.json();
+}).then(function(data) {
+  //console.log(JSON.stringify(data));
+  console.log("----Satelite Orbit Data----")
+  console.log(data.geometry.coordinates);
+  console.log("-------------------")
 });
