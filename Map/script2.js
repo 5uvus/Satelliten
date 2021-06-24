@@ -1,4 +1,39 @@
+var http = require('http');
+const fetch = require('node-fetch');
+const api_key = '7dc22efcaa6595c58a6b1e6e60bc347c0faeae0fa49992e20a9d20340fce1bb8';
+const bbox = '19.59,49.90,20.33,50.21';
+const satellites = 'Sentinel-2A,Sentinel-2B';
+const satellite_id = 1;
+const url = `https://api.spectator.earth/satellite/${satellite_id}`;
 
+//Gibt die Sachen in der CMD Aus
+
+
+const port = 8080;
+const hostname = "127.0.0.1";
+const server = http.createServer(function (req, res) {
+  res.statusCode = 200;
+ 
+})
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+
+var jsonOutput;
+fetch(url).then(function(response) {
+  return response.json();
+}).then(function(data) {
+  //console.log(JSON.stringify(data));
+  console.log(data.geometry);
+  
+  //Da Julian isch der beste
+});
+
+
+
+//WORLD-MAP------------------------------------------------------------------------------------
 require([
     "esri/Map",
     "esri/views/SceneView",
@@ -40,8 +75,8 @@ require([
 
   const point = { //Create a point
     type: "point",
-    longitude: -101.68668162817289,
-    latitude: -81.0738034930512
+    longitude: 0,
+    latitude: -0
  };
  
  const simpleMarkerSymbol = {
