@@ -1,6 +1,6 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var request = new XMLHttpRequest();
-const satellite_id = 1;
+const satellite_id = 4;
 
 function reqListener () {                     //Gibt die API-Calls aus in der Konsole
     //console.log(request.responseText);
