@@ -1040,7 +1040,7 @@ btn1.addEventListener("click", function(){
   }
   if(z == true){
     console.log("undo"); 
-    graphicsLayer.remove(paths1);
+    graphicsLayer.remove(polylineGraphic);
     z = false;
   }
   
