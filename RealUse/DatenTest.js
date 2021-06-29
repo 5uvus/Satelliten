@@ -1,4 +1,5 @@
-var http = require('http');
+
+const http = require('http');
 const fetch = require('node-fetch');
 const api_key = '7dc22efcaa6595c58a6b1e6e60bc347c0faeae0fa49992e20a9d20340fce1bb8';
 const bbox = '19.59,49.90,20.33,50.21';
@@ -32,7 +33,7 @@ fetch(url_current_info).then(function(response) {
   console.log(data.properties.name);
   console.log("------------------------");
 });
- var jsonOutput;
+ var jsonOutput = "lol";
 fetch(url_current_info).then(function(response) {
   return response.json();
 }).then(function(data) {
@@ -44,6 +45,7 @@ fetch(url_current_info).then(function(response) {
   jsonOutput = data.geometry.coordinates;
   console.log("------------------------");
 });
+
 
 fetch(url_tracking).then(function(response) {
   return response.json();

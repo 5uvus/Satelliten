@@ -15,7 +15,7 @@ require([
   });
 
   
-  
+
  var view = new MapView({
   map: map,
   autoResize: true,
@@ -42,7 +42,6 @@ require([
 
   //Layer für Punkte
 const graphicsLayer = new GraphicsLayer();
-map.add(graphicsLayer);
 
 var polyline;
 
@@ -1011,10 +1010,11 @@ var paths10 = [
 ]
 var polylineGraphic;
 function orbit(i){
+  map.add(graphicsLayer);
   console.lo
  polyline = {
   type: "polyline",
-  paths: eval("paths" + i)            //zusammensetzen des Variablen Namens
+  paths: eval("paths" + i)            //zusammensetzen des Variablen-Namens
 
 };
 var simpleLineSymbol = {
@@ -1032,54 +1032,148 @@ graphicsLayer.add(polylineGraphic);
 }
 
 var z = false;
+var old_id;
+// function clickHandling(objId){
+//   if(z == false){
+//     orbit(btn1.id); 
+//     z = true
+//   }else{
+//   if(z == true){
+//     console.log("undo"); 
+//     map.remove(graphicsLayer);
+//     z = false;
+//   }
+// }
+// }
 let btn1 = document.getElementById("1");
 btn1.addEventListener("click", function(){
   if(z == false){
-    orbit(1); 
+    orbit(btn1.id); 
     z = true
-  }
+  }else{
   if(z == true){
     console.log("undo"); 
     graphicsLayer.remove(polylineGraphic);
     z = false;
   }
-  
+}
 })
 let btn2 = document.getElementById("2");
 btn2.addEventListener("click", function(){
-  orbit(2);
+  if(z == false){
+    orbit(btn2.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn3 = document.getElementById("3");
 btn3.addEventListener("click", function(){
-  orbit(3);
+  if(z == false){
+    orbit(btn3.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn4 = document.getElementById("4");
 btn4.addEventListener("click", function(){
-  orbit(4);
+  if(z == false){
+    orbit(btn4.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn5 = document.getElementById("5");
 btn5.addEventListener("click", function(){
-  orbit(5);
+  if(z == false){
+    orbit(btn5.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn6 = document.getElementById("6");
 btn6.addEventListener("click", function(){
-  orbit(6);
+  if(z == false){
+    orbit(btn6.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn7 = document.getElementById("7");
 btn7.addEventListener("click", function(){
-  orbit(7);
+  if(z == false){
+    orbit(btn7.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn8 = document.getElementById("8");
 btn8.addEventListener("click", function(){
-  orbit(8);
+  if(z == false){
+    orbit(btn8.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn9 = document.getElementById("9");
 btn9.addEventListener("click", function(){
-  orbit(9);
+  if(z == false){
+    orbit(btn9.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 let btn10 = document.getElementById("10");
 btn10.addEventListener("click", function(){
-  orbit(10);
+  if(z == false){
+    orbit(btn10.id); 
+    z = true
+  }else{
+  if(z == true){
+    console.log("undo"); 
+    graphicsLayer.remove(polylineGraphic);
+    z = false;
+  }
+}
 })
 
 //Button Action Event
