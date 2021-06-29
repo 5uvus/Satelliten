@@ -50,3 +50,22 @@ body,
 .btn-group button:hover {
   background-color: #3e8e41;
 }
+
+#reset{
+  width: 50%;
+  height: 30px;
+}
+
+.bottom-butons{
+position:absolute;
+bottom:0;
+}
+.bottom-butons-1{
+  position:absolute;
+  bottom:0;
+  margin: 25px;
+  margin-left: 0px;
+  }
+.bottom-buttons button{
+width: 20px;
+}

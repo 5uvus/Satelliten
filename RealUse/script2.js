@@ -1,6 +1,10 @@
 
 
 //WORLD-MAP------------------------------------------------------------------------------------
+
+var map_type = "gray";
+
+
 require([
   "dojo/_base/declare",
     "esri/Map",
@@ -8,10 +12,11 @@ require([
     "esri/widgets/Search",
     "esri/layers/GraphicsLayer",
     "esri/Graphic",
-      ], function(declare, Map, MapView, Search, GraphicsLayer, Graphic) {
+    "esri/widgets/BasemapToggle",
+      "esri/widgets/BasemapGallery"
+      ], function(declare, Map, MapView, Search, GraphicsLayer, Graphic, BasemapToggle, BasemapGallery) {
   var map = new Map({
-    basemap: "dark-gray",
-   
+    basemap: "gray"
   });
 
   
@@ -21,9 +26,29 @@ require([
   autoResize: true,
   center: [	16.363449, 	48.210033], // Longitude, latitude
   zoom: 5, // Zoom level
-  container: "viewDiv" // Div element
+  container: "viewDiv",
+  constraints: {
+    rotationEnabled: false
+  } // Div element
   });
 
+  const basemapToggle = new BasemapToggle({
+    view: view,
+    nextBasemap: "arcgis-imagery"
+ });
+
+ view.ui.add(basemapToggle,"bottom-right");
+
+ const basemapGallery = new BasemapGallery({
+  view: view,
+  source: {
+    query: {
+      title: '"World Basemaps for Developers" AND owner:esri'
+    }
+  }
+});
+
+view.ui.add(basemapGallery, "top-right"); // Add to the view
   var searchWidget = new Search({
     view: view
   });
@@ -1014,12 +1039,12 @@ function orbit(i){
   console.lo
  polyline = {
   type: "polyline",
-  paths: eval("paths" + i)            //zusammensetzen des Variablen-Namens
+  paths: eval("paths" + i)            //zusammensetzen des Variablen Namens
 
 };
 var simpleLineSymbol = {
   type: "simple-line",
-  color: [156, 181, 162], // Orange
+  color: [38, 38, 36], // light-gray
   width: 100
 };
 
@@ -1032,148 +1057,68 @@ graphicsLayer.add(polylineGraphic);
 }
 
 var z = false;
-var old_id;
-// function clickHandling(objId){
-//   if(z == false){
-//     orbit(btn1.id); 
-//     z = true
-//   }else{
-//   if(z == true){
-//     console.log("undo"); 
-//     map.remove(graphicsLayer);
-//     z = false;
-//   }
-// }
-// }
+var old_id = 0;
+let reset = document.getElementById("reset");
+reset.addEventListener("click", function(){
+graphicsLayer.removeAll();
+})
+function clickHandling(objId){
+  if(z == false){
+    orbit(objId); 
+    // if(objId == old_id)
+    // {
+    //   z = true
+    // }else{
+    //   z = false;
+    // }
+  }else{
+  // if(z == true){
+  //   console.log("undo"); 
+  //   graphicsLayer.remove(polylineGraphic)
+  //   z = false;
+  // }
+}
+old_id = objId;
+}
 let btn1 = document.getElementById("1");
 btn1.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn1.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+ clickHandling(btn1.id);
 })
 let btn2 = document.getElementById("2");
 btn2.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn2.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn2.id);
 })
 let btn3 = document.getElementById("3");
 btn3.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn3.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn3.id);
 })
 let btn4 = document.getElementById("4");
 btn4.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn4.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn4.id);
 })
 let btn5 = document.getElementById("5");
 btn5.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn5.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn5.id);
 })
 let btn6 = document.getElementById("6");
 btn6.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn6.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn6.id);
 })
 let btn7 = document.getElementById("7");
 btn7.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn7.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn7.id);
 })
 let btn8 = document.getElementById("8");
 btn8.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn8.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn8.id);
 })
 let btn9 = document.getElementById("9");
 btn9.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn9.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn9.id);
 })
 let btn10 = document.getElementById("10");
 btn10.addEventListener("click", function(){
-  if(z == false){
-    orbit(btn10.id); 
-    z = true
-  }else{
-  if(z == true){
-    console.log("undo"); 
-    graphicsLayer.remove(polylineGraphic);
-    z = false;
-  }
-}
+  clickHandling(btn10.id);
 })
 
 //Button Action Event
